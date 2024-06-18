@@ -12,6 +12,7 @@ import (
 
 func main() {
 	coupon := "AA6940"
+	timeout := 6 * time.Hour
 
 	ctx := context.Background()
 	options := append(chromedp.DefaultExecAllocatorOptions[:],
@@ -31,7 +32,7 @@ func main() {
 	)
 	defer cancel()
 
-	ctx, cancel = context.WithTimeout(ctx, 180*time.Minute)
+	ctx, cancel = context.WithTimeout(ctx, timeout)
 	defer cancel()
 
 	err := chromedp.Run(ctx,
